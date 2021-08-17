@@ -96,6 +96,8 @@ int main(void){
 	wiringPiI2CWriteReg8(RTC, MIN_REGISTER, 0x4);
 	wiringPiI2CWriteReg8(RTC, SEC_REGISTER, 0x00);
 
+	bool t = true;
+
 	// Repeat this until we shut down
 	for (;;){
 		wiringPiISR(BTNS[5], INT_EDGE_FALLING, hourInc);
@@ -109,9 +111,8 @@ int main(void){
 
 		//Toggle Seconds LED
 		//Write your logic here
-		digitalWrite(LED,HIGH);
-		delay(1000);
-		digitalWrite(LED,LOW);
+
+		digitalWrite(LED,!digitalRead(LED));
 
 		// Print out the time we have stored on our RTC
 		printf("The current time is: %d:%d:%d\n", hours, mins, secs);
