@@ -5,7 +5,7 @@
  * Further Modified By: Mark Njoroge
  *
  *
- * <STUDNUM_1> <STUDNUM_2>
+ * VBNREE001 LXXHSI007
  * Date
 */
 
@@ -32,7 +32,8 @@ void CleanUp(int sig){
 
 	//Set LED to low then input mode
 	//Logic here
-
+	digitalwrite(LED,LOW);
+	pinMode(LED,INPUT);
 
 	for (int j=0; j < sizeof(BTNS)/sizeof(BTNS[0]); j++) {
 		pinMode(BTNS[j],INPUT);
@@ -55,10 +56,10 @@ void initGPIO(void){
 	RTC = wiringPiI2CSetup(RTCAddr); //Set up the RTC
 
 	//Set up the LED
+	//Write your Logic here
 	wiringPiSetup();
 	pinMode(LED,OUTPUT);
 
-	//Write your Logic here
 
 
 	printf("LED and RTC done\n");
@@ -85,6 +86,8 @@ void initGPIO(void){
  */
 int main(void){
 	signal(SIGINT,CleanUp);
+	signal(SIGTERM,CleanUp);
+	signal(SIGHUP,CleanUp);
 	initGPIO();
 
 	//Set random time (3:04PM)
@@ -100,6 +103,10 @@ int main(void){
 
 		//Toggle Seconds LED
 		//Write your logic here
+		digitalwrite(LED,HIGH);
+		delay(1000)
+		digitalwrite(LED,LOW);
+		delay(1000)
 
 		// Print out the time we have stored on our RTC
 		printf("The current time is: %d:%d:%d\n", hours, mins, secs);
