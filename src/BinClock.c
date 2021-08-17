@@ -104,9 +104,9 @@ int main(void){
 		//Toggle Seconds LED
 		//Write your logic here
 		digitalwrite(LED,HIGH);
-		delay(1000)
+		delay(1000);
 		digitalwrite(LED,LOW);
-		delay(1000)
+		delay(1000);
 
 		// Print out the time we have stored on our RTC
 		printf("The current time is: %d:%d:%d\n", hours, mins, secs);
