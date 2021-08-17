@@ -96,8 +96,6 @@ int main(void){
 	wiringPiI2CWriteReg8(RTC, MIN_REGISTER, 0x4);
 	wiringPiI2CWriteReg8(RTC, SEC_REGISTER, 0x00);
 
-	bool t = true;
-
 	// Repeat this until we shut down
 	for (;;){
 		wiringPiISR(BTNS[5], INT_EDGE_FALLING, hourInc);
