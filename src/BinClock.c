@@ -32,7 +32,7 @@ void CleanUp(int sig){
 
 	//Set LED to low then input mode
 	//Logic here
-	digitalwrite(LED,LOW);
+	digitalWrite(LED,LOW);
 	pinMode(LED,INPUT);
 
 	for (int j=0; j < sizeof(BTNS)/sizeof(BTNS[0]); j++) {
@@ -103,9 +103,9 @@ int main(void){
 
 		//Toggle Seconds LED
 		//Write your logic here
-		digitalwrite(LED,HIGH);
+		digitalWrite(LED,HIGH);
 		delay(1000);
-		digitalwrite(LED,LOW);
+		digitalWrite(LED,LOW);
 		delay(1000);
 
 		// Print out the time we have stored on our RTC
