@@ -102,14 +102,14 @@ int main(void){
 		//Write your logic here
 		hours = wiringPiI2CReadReg8(RTC, HOUR_REGISTER);
 		mins = wiringPiI2CReadReg8(RTC, MIN_REGISTER);
-		secs = wiringPiI2CReadReg8(RTC, SEC_REGISTER);
+		secs = hexCompensation(wiringPiI2CReadReg8(RTC, SEC_REGISTER));
 
 		//Toggle Seconds LED
 		//Write your logic here
 		//"you will have an LED that will flicker on and off every second"
 		//so i assume flick on and off every second, hence:
 		digitalWrite(LED,!digitalRead(LED)); //flick on
-		digitalWrite(LED,!digitalRead(LED)); //flick off
+		//digitalWrite(LED,!digitalRead(LED)); //flick off
 		//digitalWrite(LED,HIGH); //flick on
 		//digitalWrite(LED,LOW); //flick off
 
@@ -205,7 +205,7 @@ void hourInc(void){
 		printf("Interrupt 1 triggered, %x\n", hours);
 		//Fetch RTC Time
 		int value = wiringPiI2CReadReg8(RTC, HOUR_REGISTER);
-		
+
 		value = hexCompensation(value); //convert from hex to dec
 		//Increase hours by 1, ensuring not to overflow
 		if(value < 23){
@@ -216,7 +216,7 @@ void hourInc(void){
 		}
 		//Write hours back to the RTC
 		value = decCompensation(value); //convert from dec back to hex
-		
+
 		wiringPiI2CWriteReg8(RTC, HOUR_REGISTER, value);
 	}
 	lastInterruptTime = interruptTime;
@@ -235,7 +235,7 @@ void minInc(void){
 		printf("Interrupt 2 triggered, %x\n", mins);
 		//Fetch RTC Time
 		int value = wiringPiI2CReadReg8(RTC, MIN_REGISTER);
-		
+
 		value = hexCompensation(value); //convert from hex to dec
 		//Increase minutes by 1, ensuring not to overflow
 		if(value < 59){
