@@ -205,6 +205,8 @@ void hourInc(void){
 		printf("Interrupt 1 triggered, %x\n", hours);
 		//Fetch RTC Time
 		int value = wiringPiI2CReadReg8(RTC, HOUR_REGISTER);
+		
+		value = hexCompensation(value); //convert from hex to dec
 		//Increase hours by 1, ensuring not to overflow
 		if(value < 23){
 			value += 1;
@@ -213,6 +215,8 @@ void hourInc(void){
 			value = 0;
 		}
 		//Write hours back to the RTC
+		value = decCompensation(value); //convert from dec back to hex
+		
 		wiringPiI2CWriteReg8(RTC, HOUR_REGISTER, value);
 	}
 	lastInterruptTime = interruptTime;
@@ -231,6 +235,8 @@ void minInc(void){
 		printf("Interrupt 2 triggered, %x\n", mins);
 		//Fetch RTC Time
 		int value = wiringPiI2CReadReg8(RTC, MIN_REGISTER);
+		
+		value = hexCompensation(value); //convert from hex to dec
 		//Increase minutes by 1, ensuring not to overflow
 		if(value < 59){
 			value += 1;
@@ -239,6 +245,7 @@ void minInc(void){
 			value = 0;
 		}
 		//Write minutes back to the RTC
+		value = decCompensation(value); //convert from dec back to hex
 		wiringPiI2CWriteReg8(RTC, MIN_REGISTER, value);
 	}
 	lastInterruptTime = interruptTime;
