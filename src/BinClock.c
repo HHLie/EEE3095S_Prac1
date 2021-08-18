@@ -100,8 +100,8 @@ int main(void){
 	for (;;){
 		//Fetch the time from the RTC
 		//Write your logic here
-		hours = wiringPiI2CReadReg8(RTC, HOUR_REGISTER);
-		mins = wiringPiI2CReadReg8(RTC, MIN_REGISTER);
+		hours = hexCompensation(wiringPiI2CReadReg8(RTC, HOUR_REGISTER));
+		mins = hexCompensation(wiringPiI2CReadReg8(RTC, MIN_REGISTER));
 		secs = hexCompensation(wiringPiI2CReadReg8(RTC, SEC_REGISTER));
 
 		//Toggle Seconds LED
