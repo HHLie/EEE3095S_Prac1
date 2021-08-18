@@ -106,8 +106,12 @@ int main(void){
 
 		//Toggle Seconds LED
 		//Write your logic here
-
-		digitalWrite(LED,!digitalRead(LED));
+		//"you will have an LED that will flicker on and off every second"
+		//so i assume flick on and off every second, hence:
+		digitalWrite(LED,!digitalRead(LED)); //flick on
+		digitalWrite(LED,!digitalRead(LED)); //flick off
+		//digitalWrite(LED,HIGH); //flick on
+		//digitalWrite(LED,LOW); //flick off
 
 		// Print out the time we have stored on our RTC
 		printf("The current time is: %d:%d:%d\n", hours, mins, secs);
