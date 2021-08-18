@@ -203,7 +203,7 @@ void hourInc(void){
 	long interruptTime = millis();
 
 	if (interruptTime - lastInterruptTime>200){
-		printf("Interrupt 1 triggered, %x\n", hexCompensation(hours));
+		printf("Interrupt 1 triggered, %x\n", hours);
 		//Fetch RTC Time
 		int value = wiringPiI2CReadReg8(RTC, HOUR_REGISTER);
 
@@ -233,7 +233,7 @@ void minInc(void){
 	long interruptTime = millis();
 
 	if (interruptTime - lastInterruptTime>200){
-		printf("Interrupt 2 triggered, %x\n", hexCompensation(mins));
+		printf("Interrupt 2 triggered, %x\n", mins);
 		//Fetch RTC Time
 		int value = wiringPiI2CReadReg8(RTC, MIN_REGISTER);
 
