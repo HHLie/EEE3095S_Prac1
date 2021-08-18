@@ -110,7 +110,8 @@ int main(void){
 		//"you will have an LED that will flicker on and off every second"
 		//so i assume flick on and off every second, hence:
 		digitalWrite(LED,!digitalRead(LED)); //flick on
-		//digitalWrite(LED,!digitalRead(LED)); //flick off
+		delay(500); //milliseconds
+		digitalWrite(LED,!digitalRead(LED)); //flick off
 		//digitalWrite(LED,HIGH); //flick on
 		//digitalWrite(LED,LOW); //flick off
 
@@ -118,7 +119,7 @@ int main(void){
 		printf("The current time is: %d:%d:%d\n", hours, mins, secs);
 
 		//using a delay to make our program "less CPU hungry"
-		delay(1000); //milliseconds
+		delay(500); //milliseconds
 	}
 	return 0;
 }
@@ -203,7 +204,7 @@ void hourInc(void){
 	long interruptTime = millis();
 
 	if (interruptTime - lastInterruptTime>200){
-		printf("Interrupt 1 triggered, %x\n", hours);
+		printf("Interrupt 1 triggered, %d\n", hours);
 		//Fetch RTC Time
 		int value = wiringPiI2CReadReg8(RTC, HOUR_REGISTER);
 
@@ -233,7 +234,7 @@ void minInc(void){
 	long interruptTime = millis();
 
 	if (interruptTime - lastInterruptTime>200){
-		printf("Interrupt 2 triggered, %x\n", mins);
+		printf("Interrupt 2 triggered, %d\n", mins);
 		//Fetch RTC Time
 		int value = wiringPiI2CReadReg8(RTC, MIN_REGISTER);
 
