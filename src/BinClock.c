@@ -222,6 +222,7 @@ void hourInc(void){
 		wiringPiI2CWriteReg8(RTC, HOUR_REGISTER, value);
 	}
 	lastInterruptTime = interruptTime;
+	hours = hexCompensation(wiringPiI2CReadReg8(RTC, HOUR_REGISTER));
 }
 
 /*
@@ -251,6 +252,7 @@ void minInc(void){
 		wiringPiI2CWriteReg8(RTC, MIN_REGISTER, value);
 	}
 	lastInterruptTime = interruptTime;
+	mins = hexCompensation(wiringPiI2CReadReg8(RTC, MIN_REGISTER));
 }
 
 //This interrupt will fetch current time from another script and write it to the clock registers
