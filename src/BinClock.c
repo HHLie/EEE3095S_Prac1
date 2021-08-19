@@ -57,7 +57,6 @@ void initGPIO(void){
 
 	//Set up the LED
 	//Write your Logic here
-	wiringPiSetup();
 	pinMode(LED,OUTPUT);
 
 
